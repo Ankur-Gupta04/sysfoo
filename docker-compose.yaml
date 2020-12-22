@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  sysfoo:
+    image: ankurgupta04/sysfoo:latest
+    ports:
+      - 8800:8080
