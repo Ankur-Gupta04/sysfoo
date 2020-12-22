@@ -21,7 +21,9 @@ pipeline {
         }
 
       }
-      when { branch "master" }
+      when {
+        branch 'master'
+      }
       steps {
         sh 'mvn clean test'
       }
@@ -34,7 +36,9 @@ pipeline {
         }
 
       }
-      when { branch "master" }
+      when {
+        branch 'master'
+      }
       steps {
         sh 'mvn package -DskipTests'
         archiveArtifacts 'target/*.war'
@@ -42,7 +46,9 @@ pipeline {
     }
 
     stage('Docker Build&Pub') {
-      when { branch "master" }
+      when {
+        branch 'master'
+      }
       steps {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
@@ -53,6 +59,12 @@ pipeline {
           }
         }
 
+      }
+    }
+
+    stage('Deploytodev') {
+      steps {
+        sh 'docker-compose up -d'
       }
     }
 
