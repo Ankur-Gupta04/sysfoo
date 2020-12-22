@@ -4,4 +4,4 @@ services:
   sysfoo:
     image: ankurgupta04/sysfoo:latest
     ports:
-      - 8800:8080
+      - 8888:8080
